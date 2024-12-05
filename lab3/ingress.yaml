@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: reactapp
+  labels:
+    name: reactapp
+spec:
+  rules:
+  - host: minikube.local
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: reactapp
+            port:
+              number: 3333
+  tls:
+  - hosts:
+    - minikube.local
+    secretName: minikube.local.secret
